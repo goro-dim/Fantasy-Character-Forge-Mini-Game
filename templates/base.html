@@ -1,0 +1,31 @@
+os.makedirs(os.path.join(ROOT, "templates"), exist_ok=True)
+base_html = r'''<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Character Forge</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=EB+Garamond:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <div class="page-bg">
+    <header class="site-header">
+      <div class="logo">🜂 <span>Character Forge</span></div>
+      <nav class="nav-right"><a href="{{ url_for('index') }}">Home</a></nav>
+    </header>
+
+    <main class="container">
+      {% block content %}{% endblock %}
+    </main>
+
+    <footer class="site-footer">
+      <small>Made with candlelight and chaos. Run locally. Open source.</small>
+    </footer>
+  </div>
+  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+</body>
+</html>'''
+with open(os.path.join(ROOT, "templates", "base.html"), "w", encoding="utf-8") as f:
+    f.write(base_html)

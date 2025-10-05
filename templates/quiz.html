@@ -1,0 +1,15 @@
+quiz_html = r'''{% extends "base.html" %}
+{% block content %}
+<div class="quiz-card">
+  <div class="progress">Question {{ progress.current }} / {{ progress.total }}</div>
+  <h2 class="question">{{ question.q }}</h2>
+  <form method="post" class="choices">
+    {% for key, (txt, _) in question.opts.items() %}
+      <button class="choice-btn" name="choice" value="{{ key }}">{{ txt }}</button>
+    {% endfor %}
+  </form>
+  <div class="smallprint">Click an answer to continue. Your choices build hidden stats.</div>
+</div>
+{% endblock %}'''
+with open(os.path.join(ROOT, "templates", "quiz.html"), "w", encoding="utf-8") as f:
+    f.write(quiz_html)

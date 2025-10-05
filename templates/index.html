@@ -1,0 +1,13 @@
+index_html = r'''{% extends "base.html" %}
+{% block content %}
+<section class="hero">
+  <div class="hero-card">
+    <h1>Character Forge</h1>
+    <p class="lead">Forge your next Baldur’s Gate 3 character with a branching, story-driven quiz. Serious fantasy, foolish results.</p>
+    <a class="cta" href="{{ url_for('quiz', qid=0) }}">Begin the Forge</a>
+    <p class="note">This runs locally and uses your choices to build a full character profile.</p>
+  </div>
+</section>
+{% endblock %}'''
+with open(os.path.join(ROOT, "templates", "index.html"), "w", encoding="utf-8") as f:
+    f.write(index_html)

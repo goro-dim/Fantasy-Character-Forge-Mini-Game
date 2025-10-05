@@ -1,0 +1,39 @@
+
+result_html = r'''{% extends "base.html" %}
+{% block content %}
+<div class="result-card">
+  <div class="result-header">
+    <h1>{{ char['race suggestion'] }} {{ char['class'] }}</h1>
+    <div class="sub">{{ char['subclass suggestion'] }} — {{ char['alignment'] }}</div>
+  </div>
+  <div class="result-body">
+    <div class="portrait">
+      <img src="{{ url_for('static', filename='img/portrait_placeholder.png') }}" alt="portrait">
+    </div>
+    <div class="summary">
+      <h3>Background</h3>
+      <p><strong>{{ char['background'] }}</strong> — {{ char['background blurb'] }}</p>
+      <h3>Tone & Quirk</h3>
+      <p><em>{{ char['tone'] }}</em>. {{ char['quirk'] }}</p>
+      <h3>Flaw & Hooks</h3>
+      <p>{{ char['flaw'] }}</p>
+      <ul>
+        {% for h in char['hooks'] %}
+          <li>{{ h }}</li>
+        {% endfor %}
+      </ul>
+      <h3>Stats</h3>
+      <table class="stat-table">
+        {% for k, v in char['stats'].items() %}
+          <tr><td>{{ k }}</td><td>{{ v }}</td></tr>
+        {% endfor %}
+      </table>
+      <div class="actions">
+        <a class="cta" href="{{ url_for('index') }}">Forge Again</a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}'''
+with open(os.path.join(ROOT, "templates", "result.html"), "w", encoding="utf-8") as f:
+    f.write(result_html)
